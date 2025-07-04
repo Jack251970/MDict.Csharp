@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MDict.Csharp.Models;
-using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
@@ -123,7 +122,7 @@ public partial class MainWindow : Window
         var newDefinition = new StringBuilder(Definition);
 
         // Replace the light and dark theme CSS based on the system theme
-        if (IsSystemDarkTheme())
+        if (ThemeHelper.IsDarkTheme())
         {
             newDefinition.Replace(_settings.LightThemeCss, _settings.DarkThemeCss);
         }
@@ -146,28 +145,6 @@ public partial class MainWindow : Window
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
         ResultWebView2.NavigateToString(newDefinition.ToString());
-    }
-
-    private static bool IsSystemDarkTheme()
-    {
-        using var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-        var registryValueObject = key?.GetValue("AppsUseLightTheme");
-        if (registryValueObject is null)
-        {
-            return false; // Default to light theme if the registry value is not found
-        }
-
-        if (registryValueObject is int registryValueInt)
-        {
-            return registryValueInt <= 0; // 0 means dark theme, 1 means light theme
-        }
-
-        if (registryValueObject is string registryValueString && int.TryParse(registryValueString, out var parsedValue))
-        {
-            return parsedValue == 0; // 0 means dark theme, 1 means light theme
-        }
-
-        return false; // Default to light theme if the value is not an int or string
     }
 
     private void Window_Closed(object sender, EventArgs e)
