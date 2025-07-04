@@ -11,6 +11,7 @@
     Height="450"
     Closed="Window_Closed"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
