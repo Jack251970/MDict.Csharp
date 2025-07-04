@@ -7,7 +7,7 @@ public class Settings
 {
     public string DictPath { get; set; } = string.Empty;
 
-    private static readonly string SettingsPath = Path.Combine(AppContext.BaseDirectory, "settings.json");
+    private static readonly string SettingsPath = Path.Combine(AppContext.BaseDirectory, "MDict.Csharp.Demo.WPF.json");
 
     public static Settings Load()
     {
