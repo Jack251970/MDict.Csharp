@@ -64,5 +64,5 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.Output_Nuget_Path }}
+          files: "MDict.Csharp\\bin\\Release\\*.nupkg"
           tag_name: "v${{ env.release_version }}"
