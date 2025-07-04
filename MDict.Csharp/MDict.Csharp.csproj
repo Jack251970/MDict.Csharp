@@ -8,6 +8,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -17,11 +18,13 @@
     <InformationalVersion>0.0.2</InformationalVersion>
     <FileVersion>0.0.2</FileVersion>
     <PackageId>MDict.Csharp</PackageId>
+    <PackageIcon>icon.png</PackageIcon>
     <Authors>Jack251970</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <CopyRight>Jack251970</CopyRight>
     <RepositoryUrl>https://github.com/Jack251970/MDict.CSharp</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Jack251970/MDict.CSharp</PackageProjectUrl>
+    <Description>*.mdx/*.mdd interpreter csharp implements, support mdict index file</Description>
     <PackageDescription>*.mdx/*.mdd interpreter csharp implements, support mdict index file</PackageDescription>
     <PackageTags>csharp; dictionary; mdx; mdd; glodendict; mdict</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -31,7 +34,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
