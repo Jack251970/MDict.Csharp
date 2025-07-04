@@ -18,7 +18,6 @@ jobs:
     env:
       Solution_Path: MDict.Csharp.sln
       Project_Path: MDict.Csharp\MDict.Csharp.csproj
-      Output_Nuget_Path: MDict.Csharp\bin\Release\MDict.Csharp.*.nupkg
 
     steps:
 
@@ -52,7 +51,7 @@ jobs:
 
     #   # Publish to NuGet
     #   - name: Publish to NuGet
-    #     run: nuget push ${{ env.Output_Nuget_Path }} -source 'https://api.nuget.org/v3/index.json' -apikey ${{secrets.publish}}
+    #     run: nuget push nupkgs/*.nupkg -source 'https://api.nuget.org/v3/index.json' -apikey ${{ secrets.NUGET_API_KEY }}
 
       # Get package version
       - name: Get Package Version
@@ -64,5 +63,5 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v2
         with:
-          files: "MDict.Csharp\\bin\\Release\\*.nupkg"
+          files: nupkgs/*.nupkg
           tag_name: "v${{ env.release_version }}"
