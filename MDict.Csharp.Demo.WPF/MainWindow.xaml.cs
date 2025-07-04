@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MDict.Csharp.Models;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -12,8 +13,12 @@ public partial class MainWindow : Window
     public ObservableCollection<FuzzyWord> FuzzyWords { get; } = [];
 
     private MdxDict? Dict { get; set; }
+    private string? RelatedPath { get; set; }
+
+    private const string VirtualHost = "appassets";
 
     private readonly Settings _settings;
+    private readonly Dictionary<string, string> _webView2PathMapping = [];
 
     public MainWindow()
     {
@@ -48,6 +53,20 @@ public partial class MainWindow : Window
         Dict?.Close();
         // Load the new dictionary
         Dict = new MdxDict(path);
+        // Load the web view paths
+        RelatedPath = System.IO.Path.GetDirectoryName(path);
+        if (!string.IsNullOrEmpty(RelatedPath))
+        {
+            _webView2PathMapping.Clear();
+            foreach (var file in System.IO.Directory.EnumerateFiles(RelatedPath))
+            {
+                var relatedPath = System.IO.Path.GetRelativePath(RelatedPath, file);
+                if (!string.IsNullOrEmpty(relatedPath))
+                {
+                    _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
+                }
+            }
+        }
         // Search for fuzzy words if the search box is not empty
         if (!string.IsNullOrEmpty(Search.Text))
         {
@@ -82,8 +101,22 @@ public partial class MainWindow : Window
         var (_, Definition) = Dict.Fetch(word);
         if (Definition is null) return;
 
+        var newDefinition = new StringBuilder(Definition);
+        // Replace relative paths with virtual host urls
+        foreach (var kvp in _webView2PathMapping)
+        {
+            newDefinition.Replace(kvp.Key, kvp.Value);
+        }
+        var newDefinitionString = newDefinition.ToString();
+
         await ResultWebView2.EnsureCoreWebView2Async();
-        ResultWebView2.NavigateToString(Definition);
+
+        ResultWebView2.CoreWebView2.SetVirtualHostNameToFolderMapping(
+            "appassets",
+            RelatedPath,
+            Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
+        );
+        ResultWebView2.NavigateToString(newDefinitionString);
     }
 
     private void Window_Closed(object sender, EventArgs e)
