@@ -16,14 +16,14 @@ namespace MDict.Csharp.Models;
 /// Under modern computer performance conditions, directly traversing all entries can yield good results.
 /// So the current strategy is to read all entries and sort them internally.
 /// </remarks>
-public class MDict : BaseMDict
+public class Dict : BaseDict
 {
     /// <summary>
     /// Constructor for MDict.
     /// </summary>
     /// <param name="fname"></param>
     /// <param name="options"></param>
-    protected MDict(string fname, MDictOptions? options = null)
+    protected Dict(string fname, MDictOptions? options = null)
         : base(fname, options?.Passcode ?? "", options ?? new MDictOptions())
     {
         // default options

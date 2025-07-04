@@ -1,22 +1,22 @@
 ﻿namespace MDict.Csharp.Models;
 
 /// <summary>
-/// MDict MDD file model.
+/// MDict Mdd file model.
 /// </summary>
-public class MDD : MDict
+public class MddDict : Dict
 {
     /// <summary>
-    /// Create a new MDD instance with the specified file name and options.
+    /// Create a new instance with the specified file name and options.
     /// </summary>
     /// <param name="fname"></param>
     /// <param name="options"></param>
-    public MDD(string fname, MDictOptions? options = null)
+    public MddDict(string fname, MDictOptions? options = null)
         : base(fname, options)
     {
     }
 
     /// <summary>
-    /// Result of locating a resource key in the MDD file.
+    /// Result of locating a resource key in the Mdd file.
     /// </summary>
     /// <param name="KeyText"></param>
     /// <param name="Definition"></param>

@@ -272,7 +272,7 @@ public class MdictMeta
 /// <summary>
 /// Base class for MDict file model.
 /// </summary>
-public class BaseMDict
+public class BaseDict
 {
     private static readonly TextDecoder UTF_16LE_DECODER = new(TextDecoder.DecoderType.UTF16LE);
     private const string UTF16 = "UTF-16";
@@ -378,7 +378,7 @@ public class BaseMDict
     /// <param name="fname"></param>
     /// <param name="passcode"></param>
     /// <param name="options"></param>
-    public BaseMDict(string fname, string passcode = null!, MDictOptions options = null!)
+    public BaseDict(string fname, string passcode = null!, MDictOptions options = null!)
     {
         // the mdict file name
         meta.Fname = fname;

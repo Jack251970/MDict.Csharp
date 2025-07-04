@@ -5,14 +5,14 @@ namespace MDict.Csharp.Models;
 /// <summary>
 /// MDX file model for MDict.
 /// </summary>
-public class Mdx : MDict
+public class MdxDict : Dict
 {
     /// <summary>
-    /// Create a new Mdx instance with the specified file name and options.
+    /// Create a new instance with the specified file name and options.
     /// </summary>
     /// <param name="fname"></param>
     /// <param name="options"></param>
-    public Mdx(string fname, MDictOptions? options = null) : base(fname, options)
+    public MdxDict(string fname, MDictOptions? options = null) : base(fname, options)
     {
     }
 
