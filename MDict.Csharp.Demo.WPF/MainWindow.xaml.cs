@@ -112,7 +112,7 @@ public partial class MainWindow : Window
         await ResultWebView2.EnsureCoreWebView2Async();
 
         ResultWebView2.CoreWebView2.SetVirtualHostNameToFolderMapping(
-            "appassets",
+            VirtualHost,
             RelatedPath,
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
