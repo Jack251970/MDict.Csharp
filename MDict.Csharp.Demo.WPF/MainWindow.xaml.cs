@@ -102,12 +102,12 @@ public partial class MainWindow : Window
         if (Definition is null) return;
 
         var newDefinition = new StringBuilder(Definition);
+
         // Replace relative paths with virtual host urls
         foreach (var kvp in _webView2PathMapping)
         {
             newDefinition.Replace(kvp.Key, kvp.Value);
         }
-        var newDefinitionString = newDefinition.ToString();
 
         await ResultWebView2.EnsureCoreWebView2Async();
 
@@ -116,7 +116,7 @@ public partial class MainWindow : Window
             RelatedPath,
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
-        ResultWebView2.NavigateToString(newDefinitionString);
+        ResultWebView2.NavigateToString(newDefinition.ToString());
     }
 
     private void Window_Closed(object sender, EventArgs e)
