@@ -28,9 +28,13 @@ public partial class MainWindow : Window
         if (dlg.ShowDialog() == true && !string.IsNullOrEmpty(dlg.FileName))
         {
             Path.Text = dlg.FileName;
+            // Clear the previous dictionary and fuzzy words
             FuzzyWords.Clear();
+            // Close the previous dictionary if it exists
             Dict?.Close();
+            // Load the new dictionary
             Dict = new MdxDict(dlg.FileName);
+            // Search for fuzzy words if the search box is not empty
             if (!string.IsNullOrEmpty(Search.Text))
             {
                 Search_TextChanged(Search, new TextChangedEventArgs(TextBoxBase.TextChangedEvent, UndoAction.None));
