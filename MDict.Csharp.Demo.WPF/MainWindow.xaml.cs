@@ -12,6 +12,8 @@ public partial class MainWindow : Window
 {
     public ObservableCollection<FuzzyWord> FuzzyWords { get; } = [];
 
+    public ThemeHelper ThemeHelper { get; } = new();
+
     private MdxDict? Dict { get; set; }
     private string? RelatedPath { get; set; }
 
@@ -31,6 +33,18 @@ public partial class MainWindow : Window
         }
         LightThemeCss.Text = _settings.LightThemeCss;
         DarkThemeCss.Text = _settings.DarkThemeCss;
+        ThemeHelper.ThemeChanged += ThemeHelper_ThemeChanged;
+    }
+
+    private void ThemeHelper_ThemeChanged(object? sender, ThemeChangedEventArgs e)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            if (FuzzyWordListView.SelectedItem is FuzzyWord word)
+            {
+                UpdateResultWebView2(word, e.IsDarkTheme);
+            }
+        });
     }
 
     [RelayCommand]
@@ -112,9 +126,16 @@ public partial class MainWindow : Window
         _settings.Save();
     }
 
-    private async void FuzzyWordListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void FuzzyWordListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (Dict == null || FuzzyWordListView.SelectedItem is not FuzzyWord word) return;
+        if (FuzzyWordListView.SelectedItem is not FuzzyWord word) return;
+
+        UpdateResultWebView2(word, ThemeHelper.IsDarkTheme());
+    }
+
+    private async void UpdateResultWebView2(FuzzyWord word, bool isDarkTheme)
+    {
+        if (Dict is null || word is null || ResultWebView2 is null) return;
 
         var (_, Definition) = Dict.Fetch(word);
         if (Definition is null) return;
@@ -122,7 +143,7 @@ public partial class MainWindow : Window
         var newDefinition = new StringBuilder(Definition);
 
         // Replace the light and dark theme CSS based on the system theme
-        if (ThemeHelper.IsDarkTheme())
+        if (isDarkTheme)
         {
             newDefinition.Replace(_settings.LightThemeCss, _settings.DarkThemeCss);
         }
@@ -149,6 +170,7 @@ public partial class MainWindow : Window
 
     private void Window_Closed(object sender, EventArgs e)
     {
+        ThemeHelper.Dispose();
         Dict?.Close();
     }
 }
