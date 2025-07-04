@@ -647,7 +647,11 @@ public class BaseDict
 
         // before version 2.0, number is 4 bytes integer alias, int32
         // version 2.0 and above use 8 bytes, alias int64
-        meta.Version = float.Parse(header["GeneratedByEngineVersion"]?.ToString() ?? string.Empty);
+        var versionStr = header["GeneratedByEngineVersion"]?.ToString();
+        if (!string.IsNullOrWhiteSpace(versionStr) && float.TryParse(versionStr, out var version))
+        {
+            meta.Version = version;
+        }
         if (meta.Version >= 2.0)
         {
             meta.NumWidth = 8;
