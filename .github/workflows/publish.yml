@@ -56,7 +56,7 @@ jobs:
       # Get package version
       - name: Get Package Version
         run: |
-         $version = [system.diagnostics.fileversioninfo]::getversioninfo("MDict.Csharp\bin\Release\MDict.Csharp.dll").productversion
+         $version = [system.diagnostics.fileversioninfo]::getversioninfo("MDict.Csharp\bin\Release\MDict.Csharp.dll").fileversion
          echo "release_version=$version" | out-file -filepath $env:github_env -encoding utf-8 -append
 
       # Publish to GitHub releases
