@@ -54,6 +54,5 @@ jobs:
       - name: Upload NuGet package
         uses: actions/upload-artifact@v4
         with:
-          name: Full nupkg
-          path: MDict.Csharp/bin/Release/MDict.Csharp.*.nupkg
-          compression-level: 0
+          name: MDict.Csharp
+          path: MDict.Csharp/bin/Release
