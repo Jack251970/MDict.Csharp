@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageVersion>0.0.1</PackageVersion>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <InformationalVersion>0.0.1</InformationalVersion>
+    <PackageId>MDict.Csharp</PackageId>
+    <Authors>Jack251970</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <CopyRight>Jack251970</CopyRight>
+    <RepositoryUrl>https://github.com/Jack251970/MDict.CSharp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Jack251970/MDict.CSharp</PackageProjectUrl>
+    <PackageDescription>*.mdx/*.mdd interpreter csharp implements, support mdict index file</PackageDescription>
+    <PackageTags>csharp; dictionary; mdx; mdd; glodendict; mdict</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <TargetFramework>net7.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Output\Debug</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Output\Release</OutputPath>
+  </PropertyGroup>
+
+</Project>
