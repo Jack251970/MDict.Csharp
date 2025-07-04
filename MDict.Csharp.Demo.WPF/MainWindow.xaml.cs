@@ -19,7 +19,11 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _settings = Settings.Load();
-        Path.Text = _settings.DictPath ?? string.Empty;
+        if (!string.IsNullOrEmpty(_settings.DictPath))
+        {
+            Path.Text = _settings.DictPath;
+            LoadDictionary(_settings.DictPath);
+        }
     }
 
     [RelayCommand]
@@ -32,21 +36,26 @@ public partial class MainWindow : Window
         if (dlg.ShowDialog() == true && !string.IsNullOrEmpty(dlg.FileName))
         {
             Path.Text = dlg.FileName;
-            // Clear the previous dictionary and fuzzy words
-            FuzzyWords.Clear();
-            // Close the previous dictionary if it exists
-            Dict?.Close();
-            // Load the new dictionary
-            Dict = new MdxDict(dlg.FileName);
-            // Search for fuzzy words if the search box is not empty
-            if (!string.IsNullOrEmpty(Search.Text))
-            {
-                Search_TextChanged(Search, new TextChangedEventArgs(TextBoxBase.TextChangedEvent, UndoAction.None));
-            }
-            // Save the new path to settings
-            _settings.DictPath = dlg.FileName;
-            _settings.Save();
+            LoadDictionary(dlg.FileName);
         }
+    }
+
+    private void LoadDictionary(string path)
+    {
+        // Clear the previous dictionary and fuzzy words
+        FuzzyWords.Clear();
+        // Close the previous dictionary if it exists
+        Dict?.Close();
+        // Load the new dictionary
+        Dict = new MdxDict(path);
+        // Search for fuzzy words if the search box is not empty
+        if (!string.IsNullOrEmpty(Search.Text))
+        {
+            Search_TextChanged(Search, new TextChangedEventArgs(TextBoxBase.TextChangedEvent, UndoAction.None));
+        }
+        // Save the new path to settings
+        _settings.DictPath = path;
+        _settings.Save();
     }
 
     private void Search_TextChanged(object sender, TextChangedEventArgs e)
