@@ -13,9 +13,13 @@ public partial class MainWindow : Window
 
     private MdxDict? Dict { get; set; }
 
+    private readonly Settings _settings;
+
     public MainWindow()
     {
         InitializeComponent();
+        _settings = Settings.Load();
+        Path.Text = _settings.DictPath ?? string.Empty;
     }
 
     [RelayCommand]
@@ -39,6 +43,9 @@ public partial class MainWindow : Window
             {
                 Search_TextChanged(Search, new TextChangedEventArgs(TextBoxBase.TextChangedEvent, UndoAction.None));
             }
+            // Save the new path to settings
+            _settings.DictPath = dlg.FileName;
+            _settings.Save();
         }
     }
 
