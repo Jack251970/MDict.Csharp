@@ -51,7 +51,7 @@ jobs:
 
       # Publish to NuGet
       - name: Publish to NuGet
-        run: nuget push nupkgs/*.nupkg -source 'https://api.nuget.org/v3/index.json' -apikey ${{ secrets.NUGET_API_KEY }}
+        run: nuget push nupkgs\*.nupkg -source 'https://api.nuget.org/v3/index.json' -apikey ${{ secrets.NUGET_API_KEY }}
 
       # Get package version
       - name: Get Package Version
