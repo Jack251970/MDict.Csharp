@@ -180,4 +180,16 @@ public class FuzzyWord : KeyWordItem
     /// The edit distance of the fuzzy word from the original word.
     /// </summary>
     public int Ed { get; set; }
+
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(KeyText, Ed);
+    }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return KeyText;
+    }
 }
