@@ -128,26 +128,6 @@ public class MdxDict : Dict
     }
 
     /// <summary>
-    /// Fetch the definition of a keyword item.
-    /// </summary>
-    /// <param name="keywordItem">
-    /// The keyword item to fetch the definition for.
-    /// </param>
-    /// <returns>
-    /// A tuple containing the key text and its definition.
-    /// </returns>
-    public (string KeyText, string? Definition) FetchDefinition(KeyWordItem keywordItem)
-    {
-        var def = LookupRecordByKeyBlock(keywordItem);
-        if (def == null)
-        {
-            return (keywordItem.KeyText, null);
-        }
-
-        return (keywordItem.KeyText, meta.Decoder.Decode(def));
-    }
-
-    /// <summary>
     /// Perform a fuzzy search for words based on a given word, fuzzy size, and edit distance gap.
     /// </summary>
     /// <param name="word">
