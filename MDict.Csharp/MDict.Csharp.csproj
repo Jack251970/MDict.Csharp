@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.0.1</Version>
-    <PackageVersion>0.0.1</PackageVersion>
-    <AssemblyVersion>0.0.1</AssemblyVersion>
-    <InformationalVersion>0.0.1</InformationalVersion>
-    <FileVersion>0.0.1</FileVersion>
+    <Version>0.0.2</Version>
+    <PackageVersion>0.0.2</PackageVersion>
+    <AssemblyVersion>0.0.2</AssemblyVersion>
+    <InformationalVersion>0.0.2</InformationalVersion>
+    <FileVersion>0.0.2</FileVersion>
     <PackageId>MDict.Csharp</PackageId>
     <Authors>Jack251970</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
