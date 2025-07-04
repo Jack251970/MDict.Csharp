@@ -7,6 +7,10 @@ public class Settings
 {
     public string DictPath { get; set; } = string.Empty;
 
+    public string LightThemeCss { get; set; } = string.Empty;
+
+    public string DarkThemeCss { get; set; } = string.Empty;
+
     private static readonly string SettingsPath = Path.Combine(AppContext.BaseDirectory, "MDict.Csharp.Demo.WPF.json");
 
     public static Settings Load()
