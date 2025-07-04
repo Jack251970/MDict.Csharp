@@ -286,6 +286,11 @@ public class BaseDict
     private static readonly TextDecoder GB18030_DECODER = new(TextDecoder.DecoderType.GB18030);
     private const string GB18030 = "GB18030";
 
+    /// <summary>
+    /// File path of this dictionary file.
+    /// </summary>
+    public readonly string FileName;
+
     // File scanner
     internal FileScanner scanner;
 
@@ -380,6 +385,7 @@ public class BaseDict
     /// <param name="options"></param>
     public BaseDict(string fname, string passcode = null!, MDictOptions options = null!)
     {
+        FileName = fname;
         // the mdict file name
         meta.Fname = fname;
         // the dictionary file decrypt pass code
