@@ -143,13 +143,16 @@ public partial class MainWindow : Window
         var newDefinition = new StringBuilder(Definition);
 
         // Replace the light and dark theme CSS based on the system theme
-        if (isDarkTheme)
+        if (!string.IsNullOrEmpty(_settings.LightThemeCss) && !string.IsNullOrEmpty(_settings.DarkThemeCss))
         {
-            newDefinition.Replace(_settings.LightThemeCss, _settings.DarkThemeCss);
-        }
-        else
-        {
-            newDefinition.Replace(_settings.DarkThemeCss, _settings.LightThemeCss);
+            if (isDarkTheme)
+            {
+                newDefinition.Replace(_settings.LightThemeCss, _settings.DarkThemeCss);
+            }
+            else
+            {
+                newDefinition.Replace(_settings.DarkThemeCss, _settings.LightThemeCss);
+            }
         }
 
         // Replace relative paths with virtual host urls
