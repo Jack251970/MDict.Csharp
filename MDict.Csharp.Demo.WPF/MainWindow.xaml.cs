@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MDict.Csharp.Models;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,7 +29,7 @@ public partial class MainWindow : Window
         _settings = Settings.Load();
         if (!string.IsNullOrEmpty(_settings.DictPath))
         {
-            Path.Text = _settings.DictPath;
+            DictPath.Text = _settings.DictPath;
             LoadDictionary(_settings.DictPath);
         }
         LightThemeCss.Text = _settings.LightThemeCss;
@@ -56,7 +57,7 @@ public partial class MainWindow : Window
         };
         if (dlg.ShowDialog() == true && !string.IsNullOrEmpty(dlg.FileName))
         {
-            Path.Text = dlg.FileName;
+            DictPath.Text = dlg.FileName;
             LoadDictionary(dlg.FileName);
         }
     }
@@ -70,13 +71,13 @@ public partial class MainWindow : Window
         // Load the new dictionary
         Dict = new MdxDict(path);
         // Load the web view paths
-        DictDirectory = System.IO.Path.GetDirectoryName(path);
+        DictDirectory = Path.GetDirectoryName(path);
         if (!string.IsNullOrEmpty(DictDirectory))
         {
             _webView2PathMapping.Clear();
-            foreach (var file in System.IO.Directory.EnumerateFiles(DictDirectory))
+            foreach (var file in Directory.EnumerateFiles(DictDirectory))
             {
-                var relatedPath = System.IO.Path.GetRelativePath(DictDirectory, file);
+                var relatedPath = Path.GetRelativePath(DictDirectory, file);
                 if (!string.IsNullOrEmpty(relatedPath))
                 {
                     _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";

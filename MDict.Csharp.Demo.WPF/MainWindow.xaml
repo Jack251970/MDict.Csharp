@@ -27,12 +27,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBox
-                x:Name="Path"
+                x:Name="DictPath"
                 Grid.Column="0"
                 Margin="8,8,4,4"
                 IsReadOnly="True" />
             <Button
-                x:Name="PathButton"
+                x:Name="DictPathButton"
                 Grid.Column="1"
                 Margin="4,8,8,4"
                 Command="{Binding NavigatePathCommand}"
