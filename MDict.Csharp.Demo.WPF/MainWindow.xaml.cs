@@ -99,6 +99,11 @@ public partial class MainWindow : Window
                         _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
                         _webView2PathMapping[winRelatedPath] = $"https://{VirtualHost}/{relatedPath}";
                     }
+                    // Else just add the related path as it is
+                    else
+                    {
+                        _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
+                    }
                 }
             }
         }
