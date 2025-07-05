@@ -189,6 +189,7 @@ public partial class MainWindow : Window
             DictDirectory,
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
+
         ResultWebView2.NavigateToString(newDefinition.ToString());
     }
 
