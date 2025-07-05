@@ -80,7 +80,19 @@ public partial class MainWindow : Window
                 var relatedPath = Path.GetRelativePath(DictDirectory, file);
                 if (!string.IsNullOrEmpty(relatedPath))
                 {
-                    _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
+                    // If related path contains backslashes or forward slashes, we need to add two versions of replacement rules
+                    if (relatedPath.Contains('\\'))
+                    {
+                        var unixRelatedPath = relatedPath.Replace('\\', '/');
+                        _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{unixRelatedPath}";
+                        _webView2PathMapping[unixRelatedPath] = $"https://{VirtualHost}/{unixRelatedPath}";
+                    }
+                    else if (relatedPath.Contains('/'))
+                    {
+                        var winRelatedPath = relatedPath.Replace('/', '\\');
+                        _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
+                        _webView2PathMapping[winRelatedPath] = $"https://{VirtualHost}/{relatedPath}";
+                    }
                 }
             }
         }
