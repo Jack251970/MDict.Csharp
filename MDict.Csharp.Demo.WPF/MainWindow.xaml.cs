@@ -66,10 +66,13 @@ public partial class MainWindow : Window
     {
         // Clear the previous dictionary and fuzzy words
         FuzzyWords.Clear();
+
         // Close the previous dictionary if it exists
         Dict?.Close();
+
         // Load the new dictionary
         Dict = new MdxDict(path);
+
         // Load the web view paths
         DictDirectory = Path.GetDirectoryName(path);
         if (!string.IsNullOrEmpty(DictDirectory))
@@ -96,11 +99,13 @@ public partial class MainWindow : Window
                 }
             }
         }
+
         // Search for fuzzy words if the search box is not empty
         if (!string.IsNullOrEmpty(Search.Text))
         {
             Search_TextChanged(Search, new TextChangedEventArgs(TextBoxBase.TextChangedEvent, UndoAction.None));
         }
+
         // Save the new path to settings
         _settings.DictPath = path;
         _settings.Save();
