@@ -6,6 +6,8 @@ Thanks to [terasum](https://github.com/terasum).
 
 ## Usage
 
+Use the `MdxDict` class to read \*.mdx files.
+
 ```csharp
 using MDict.Csharp.Models;
 
@@ -25,6 +27,12 @@ Console.WriteLine(def.Definition);
 ...
 </body>
 */
+```
+
+Use the `MddDict` class to read \*.mdd files.
+
+```csharp
+using MDict.Csharp.Models;
 
 var mdx = new MddDict("./tests/data/oale8.mdd");
 Console.WriteLine(mdx.Locate("\\Logo.jpg"));
