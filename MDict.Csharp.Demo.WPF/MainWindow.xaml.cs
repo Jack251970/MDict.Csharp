@@ -64,6 +64,9 @@ public partial class MainWindow : Window
 
     private void LoadDictionary(string path)
     {
+        // Check path exists
+        if (string.IsNullOrEmpty(path) || !File.Exists(path)) return;
+
         // Clear the previous dictionary and fuzzy words
         FuzzyWords.Clear();
 
