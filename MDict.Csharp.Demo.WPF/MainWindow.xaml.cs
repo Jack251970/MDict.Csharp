@@ -156,7 +156,7 @@ public partial class MainWindow : Window
 
     private async void UpdateResultWebView2(FuzzyWord word, bool isDarkTheme)
     {
-        if (Dict is null || word is null || ResultWebView2 is null) return;
+        if (Dict is null || string.IsNullOrEmpty(DictDirectory) || word is null || ResultWebView2 is null) return;
 
         var (_, Definition) = Dict.Fetch(word);
         if (Definition is null) return;
