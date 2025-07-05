@@ -15,7 +15,7 @@ public partial class MainWindow : Window
     public ThemeHelper ThemeHelper { get; } = new();
 
     private MdxDict? Dict { get; set; }
-    private string? RelatedPath { get; set; }
+    private string? DictDirectory { get; set; }
 
     private const string VirtualHost = "appassets";
 
@@ -70,13 +70,13 @@ public partial class MainWindow : Window
         // Load the new dictionary
         Dict = new MdxDict(path);
         // Load the web view paths
-        RelatedPath = System.IO.Path.GetDirectoryName(path);
-        if (!string.IsNullOrEmpty(RelatedPath))
+        DictDirectory = System.IO.Path.GetDirectoryName(path);
+        if (!string.IsNullOrEmpty(DictDirectory))
         {
             _webView2PathMapping.Clear();
-            foreach (var file in System.IO.Directory.EnumerateFiles(RelatedPath))
+            foreach (var file in System.IO.Directory.EnumerateFiles(DictDirectory))
             {
-                var relatedPath = System.IO.Path.GetRelativePath(RelatedPath, file);
+                var relatedPath = System.IO.Path.GetRelativePath(DictDirectory, file);
                 if (!string.IsNullOrEmpty(relatedPath))
                 {
                     _webView2PathMapping[relatedPath] = $"https://{VirtualHost}/{relatedPath}";
@@ -165,7 +165,7 @@ public partial class MainWindow : Window
 
         ResultWebView2.CoreWebView2.SetVirtualHostNameToFolderMapping(
             VirtualHost,
-            RelatedPath,
+            DictDirectory,
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
         ResultWebView2.NavigateToString(newDefinition.ToString());
