@@ -80,7 +80,14 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
+            // Set Dict to null
             Dict = null;
+
+            // Save the new path to settings
+            _settings.DictPath = path;
+            _settings.Save();
+
+            // Show error message
             MessageBox.Show($"Failed to load dictionary: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
