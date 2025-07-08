@@ -652,6 +652,10 @@ public class BaseDict
         {
             meta.Version = version;
         }
+        else
+        {
+            meta.Version = double.NaN;
+        }
         if (meta.Version >= 2.0)
         {
             meta.NumWidth = 8;
