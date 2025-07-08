@@ -74,7 +74,16 @@ public partial class MainWindow : Window
         Dict?.Close();
 
         // Load the new dictionary
-        Dict = new MdxDict(path);
+        try
+        {
+            Dict = new MdxDict(path);
+        }
+        catch (Exception ex)
+        {
+            Dict = null;
+            MessageBox.Show($"Failed to load dictionary: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
 
         // Load the web view paths
         DictDirectory = Path.GetDirectoryName(path);
