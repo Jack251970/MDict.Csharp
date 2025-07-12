@@ -725,6 +725,11 @@ public class BaseDict
         // [0:8]   - number of key blocks
         var keywordBlockNumBuff = keyHeaderBuff.Skip(offset).Take(meta.NumWidth).ToArray();
         keyHeader.KeywordBlocksNum = Common.B2N(keywordBlockNumBuff);
+        // TODO: Some dictionaries have more than 1 million keyword blocks, which is not supported.
+        if (keyHeader.KeywordBlocksNum > 100000)
+        {
+            throw new InvalidOperationException($"The number of keyword blocks {keyHeader.KeywordBlocksNum} is too large, it should be less than 1000000.");
+        }
         offset += meta.NumWidth;
 
         // [8:16]  - number of entries
