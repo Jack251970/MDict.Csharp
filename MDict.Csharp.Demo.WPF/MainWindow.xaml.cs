@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MDict.Csharp.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -211,7 +212,9 @@ public partial class MainWindow : Window
             Microsoft.Web.WebView2.Core.CoreWebView2HostResourceAccessKind.Allow
         );
 
-        ResultWebView2.NavigateToString(newDefinition.ToString());
+        var newDefinitionStr = newDefinition.ToString();
+        Debug.WriteLine(newDefinitionStr + "\n\n");
+        ResultWebView2.NavigateToString(newDefinitionStr);
     }
 
     private void Window_Closed(object sender, EventArgs e)
