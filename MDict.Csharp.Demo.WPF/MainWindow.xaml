@@ -103,7 +103,8 @@
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
             <ListView
@@ -114,8 +115,13 @@
                 SelectionMode="Single" />
             <wv2:WebView2
                 x:Name="ResultWebView2"
+                Grid.Column="1"
+                Margin="4,4,4,8" />
+            <TextBox
+                x:Name="StatusTextBox"
                 Grid.Column="2"
-                Margin="4,4,8,8" />
+                Margin="4,4,8,8"
+                IsReadOnly="True" />
         </Grid>
     </Grid>
 </Window>

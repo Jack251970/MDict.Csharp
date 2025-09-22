@@ -224,6 +224,7 @@ public partial class MainWindow : Window
         var newDefinitionStr = newDefinition.ToString();
         Debug.WriteLine(newDefinitionStr + "\n\n");
         ResultWebView2.NavigateToString(newDefinitionStr);
+        StatusTextBox.Text = newDefinitionStr;
     }
 
     private static bool TryParseLinkRedirection(string definition, out string target)
