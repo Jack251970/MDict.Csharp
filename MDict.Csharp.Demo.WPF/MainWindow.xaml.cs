@@ -37,6 +37,8 @@ public partial class MainWindow : Window
         LightThemeCss.Text = _settings.LightThemeCss;
         DarkThemeCss.Text = _settings.DarkThemeCss;
         ThemeHelper.ThemeChanged += ThemeHelper_ThemeChanged;
+        // Solve the flickering problem of WebView2
+        // https://www.bytezonex.com/archives/VdeJAEYe.html
         ResultWebView2.DefaultBackgroundColor = System.Drawing.Color.Transparent;
     }
 
