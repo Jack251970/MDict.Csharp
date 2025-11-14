@@ -60,4 +60,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MDict.Csharp
+          retention-days: 7
           path: MDict.Csharp/bin/Release
