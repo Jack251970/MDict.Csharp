@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace MDict.Csharp.Demo.WPF;
 
@@ -36,6 +37,7 @@ public partial class MainWindow : Window
         LightThemeCss.Text = _settings.LightThemeCss;
         DarkThemeCss.Text = _settings.DarkThemeCss;
         ThemeHelper.ThemeChanged += ThemeHelper_ThemeChanged;
+        ResultWebView2.DefaultBackgroundColor = System.Drawing.Color.Transparent;
     }
 
     private void ThemeHelper_ThemeChanged(object? sender, ThemeChangedEventArgs e)
