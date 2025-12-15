@@ -57,7 +57,7 @@ jobs:
 
       # Upload the NuGet package
       - name: Upload NuGet package
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: MDict.Csharp
           retention-days: 7
